@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>TaskFlow</title>
+</head>
+<body>
+    <h1>Lista de Tarefas</h1>
+
+    <h2>Adicionar Tarefa</h2>
+    <form action="/add" method="POST">
+        <input type="text" name="title" placeholder="Título" required>
+        <input type="text" name="description" placeholder="Descrição">
+        <button type="submit">Adicionar</button>
+    </form>
+
+    <h2>Tarefas</h2>
+    {% if tasks %}
+        <ul>
+        {% for task in tasks %}
+            <li>
+                {{ task[1] }} - {{ task[2] }} - {{ task[3] }}
+                <form action="/update/{{ task[0] }}" method="POST" style="display:inline;">
+                    <select name="status">
+                        <option value="Pendente" {% if task[3]=='Pendente' %}selected{% endif %}>Pendente</option>
+                        <option value="Em Progresso" {% if task[3]=='Em Progresso' %}selected{% endif %}>Em Progresso</option>
+                        <option value="Concluída" {% if task[3]=='Concluída' %}selected{% endif %}>Concluída</option>
+                    </select>
+                    <button type="submit">Atualizar</button>
+                </form>
+                <a href="/delete/{{ task[0] }}">Excluir</a>
+            </li>
+        {% endfor %}
+        </ul>
+    {% else %}
+        <p>Nenhuma tarefa cadastrada.</p>
+    {% endif %}
+</body>
+</html>
