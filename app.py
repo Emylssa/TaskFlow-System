@@ -15,7 +15,8 @@ def init_db():
             id INTEGER PRIMARY KEY AUTOINCREMENT,
             title TEXT NOT NULL,
             description TEXT,
-            status TEXT DEFAULT 'Pendente'
+            status TEXT DEFAULT 'Pendente',
+            priority TEXT DEFAULT 'Normal'  -- Nova coluna adicionada
         )
     ''')
     conn.commit()
@@ -38,21 +39,26 @@ def index():
 def add_task():
     title = request.form.get('title')
     description = request.form.get('description')
+    priority = request.form.get('priority', 'Normal')  # Novo campo
     if title:
         conn = sqlite3.connect(db_path)
         cursor = conn.cursor()
-        cursor.execute("INSERT INTO tasks (title, description) VALUES (?, ?)", (title, description))
+        cursor.execute(
+            "INSERT INTO tasks (title, description, priority) VALUES (?, ?, ?)",
+            (title, description, priority)
+        )
         conn.commit()
         conn.close()
     return redirect(url_for('index'))
 
-# Atualizar tarefa (status)
+# Atualizar tarefa (status e prioridade)
 @app.route('/update/<int:task_id>', methods=['POST'])
 def update_task(task_id):
     status = request.form.get('status')
+    priority = request.form.get('priority', 'Normal')  # Novo campo
     conn = sqlite3.connect(db_path)
     cursor = conn.cursor()
-    cursor.execute("UPDATE tasks SET status=? WHERE id=?", (status, task_id))
+    cursor.execute("UPDATE tasks SET status=?, priority=? WHERE id=?", (status, priority, task_id))
     conn.commit()
     conn.close()
     return redirect(url_for('index'))
@@ -67,6 +73,8 @@ def delete_task(task_id):
     conn.close()
     return redirect(url_for('index'))
 
+# -------------------- INÍCIO DO FLASK --------------------
 if __name__ == '__main__':
-    init_db()
+    init_db()       # Cria tabela se não existir
     app.run(debug=True)
+
