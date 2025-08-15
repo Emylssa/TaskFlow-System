@@ -32,11 +32,6 @@
                         <option value="Concluída" {% if task[3]=='Concluída' %}selected{% endif %}>Concluída</option>
                         <option value="Bloqueada" {% if task[3]=='Bloqueada' %}selected{% endif %}>Bloqueada</option>
                     </select>
-                    <select name="priority">
-                        <option value="Baixa" {% if task[4]=='Baixa' %}selected{% endif %}>Baixa</option>
-                        <option value="Normal" {% if task[4]=='Normal' %}selected{% endif %}>Normal</option>
-                        <option value="Alta" {% if task[4]=='Alta' %}selected{% endif %}>Alta</option>
-                    </select>
                     <button type="submit">Atualizar</button>
                 </form>
                 <a href="/delete/{{ task[0] }}">Excluir</a>
