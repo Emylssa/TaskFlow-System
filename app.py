@@ -55,13 +55,14 @@ def add_task():
 @app.route('/update/<int:task_id>', methods=['POST'])
 def update_task(task_id):
     status = request.form.get('status')
-    priority = request.form.get('priority', 'Normal')  # Novo campo
+    priority = request.form.get('priority', 'Normal')
     conn = sqlite3.connect(db_path)
     cursor = conn.cursor()
     cursor.execute("UPDATE tasks SET status=?, priority=? WHERE id=?", (status, priority, task_id))
     conn.commit()
     conn.close()
     return redirect(url_for('index'))
+
 
 # Excluir tarefa
 @app.route('/delete/<int:task_id>')

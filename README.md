@@ -72,6 +72,12 @@ Atualização do formulário de criação/edição de tarefas para incluir prior
 
 Atualização da listagem de tarefas para exibir a prioridade.
 
+## Mudança de Escopo
+
+Durante o desenvolvimento, foi adicionada a opção de status **"Bloqueada"** para as tarefas.  
+Essa alteração permite que a equipe marque tarefas que estão temporariamente impossíveis de avançar, mantendo o controle do fluxo de trabalho.
+
+
 Estrutura do Projeto
 taskflow/
 ├── app.py               # Aplicação principal Flask
