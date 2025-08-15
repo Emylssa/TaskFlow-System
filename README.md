@@ -1,92 +1,100 @@
 # TaskFlow System
 
-## Descrição do Projeto
-O **TaskFlow System** é um projeto acadêmico desenvolvido para gerenciar tarefas utilizando **Flask** e **SQLite**, aplicado em um contexto de metodologias ágeis.  
-O sistema permite acompanhar o fluxo de trabalho em tempo real, priorizar tarefas críticas e monitorar o desempenho da equipe.
+Projeto acadêmico de gerenciamento de tarefas com **Flask** e **SQLite**, desenvolvido como atividade da disciplina de Engenharia de Software.
 
 ---
 
 ## Objetivo
-Desenvolver um sistema de gerenciamento de tarefas para uma startup de logística, aplicando conceitos de Engenharia de Software e metodologias ágeis, simulando um ambiente real de desenvolvimento.
+
+O TaskFlow System tem como objetivo permitir que equipes gerenciem tarefas de forma ágil, acompanhando o fluxo de trabalho em tempo real, priorizando tarefas críticas e monitorando o desempenho da equipe.
 
 ---
 
-## Escopo do Projeto
-- Cadastro de tarefas (CRUD: Create, Read, Update, Delete)  
-- Acompanhamento do status das tarefas  
-- Prioridade das tarefas para identificar atividades críticas  
-- Fluxo de trabalho baseado em Kanban
+## Escopo
+
+O sistema implementa:
+
+- CRUD completo de tarefas (Criar, Listar, Atualizar, Excluir);
+- Campos adicionais:
+  - **Status**: Pendente, Em Progresso, Concluída e Bloqueada;
+  - **Prioridade**: Baixa, Normal, Alta;
+- Banco de dados SQLite;
+- Testes automatizados com **PyTest**;
+- Integração contínua com **GitHub Actions**.
 
 ---
 
 ## Metodologia
-O projeto utiliza **Kanban** para gestão de tarefas e **GitHub Actions** para controle de qualidade, incluindo testes automatizados:
 
-- **Kanban:** A Fazer → Em Progresso → Concluído  
-- **Controle de qualidade:** Testes automatizados com `pytest` rodando em workflow GitHub Actions  
+- **Kanban**: organizado nas colunas **A Fazer**, **Em Progresso** e **Concluído** no GitHub Projects;
+- **Fluxo Ágil**: commits estruturados, mudanças de escopo documentadas e controle de qualidade automatizado.
 
 ---
 
 ## Instalação e Execução
 
-1. Clonar o repositório:
+1. Criar ambiente virtual e ativar:
+
 ```bash
-git clone https://github.com/Emylssa/TaskFlow-System.git
-cd TaskFlow-System
-
-## Criar e ativar ambiente virtual:
-
 python3 -m venv venv
 source venv/bin/activate  # macOS/Linux
 venv\Scripts\activate     # Windows
-
-
 Instalar dependências:
 
+bash
+Copiar
+Editar
 pip install -r requirements.txt
+Rodar a aplicação:
 
-
-Rodar o sistema:
-
+bash
+Copiar
+Editar
 python3 app.py
+Abrir no navegador:
 
-
-Acesse o sistema em http://127.0.0.1:5000.
-
-Rodar testes automatizados:
-
-pytest
-
+cpp
+Copiar
+Editar
+http://127.0.0.1:5000
 Mudança de Escopo
+Durante o desenvolvimento, adicionamos o status "Bloqueada" para as tarefas, permitindo marcar atividades que não podem ser iniciadas até que dependências sejam resolvidas. Esta alteração está documentada no Kanban e no histórico de commits.
 
-Durante o desenvolvimento, foi necessário adicionar um campo de Prioridade no CRUD de tarefas.
-
-Justificativa:
-Permitir que o cliente identifique tarefas críticas rapidamente e melhore o acompanhamento do fluxo de trabalho.
-
-Impacto no projeto:
-
-Alteração do modelo de tarefas no banco de dados (SQLite).
-
-Atualização do formulário de criação/edição de tarefas para incluir prioridade.
-
-Atualização da listagem de tarefas para exibir a prioridade.
-
-## Mudança de Escopo
-
-Durante o desenvolvimento, foi adicionada a opção de status **"Bloqueada"** para as tarefas.  
-Essa alteração permite que a equipe marque tarefas que estão temporariamente impossíveis de avançar, mantendo o controle do fluxo de trabalho.
-
-
-Estrutura do Projeto
+Estrutura de Pastas
+bash
+Copiar
+Editar
 taskflow/
-├── app.py               # Aplicação principal Flask
-├── requirements.txt     # Dependências do projeto
-├── README.md            # Documentação
-├── .github/
-│   └── workflows/
-│       └── test.yml    # Workflow GitHub Actions
-├── templates/           # Templates HTML
-├── static/              # Arquivos estáticos (CSS, JS)
-└── tests/
-    └── test_app.py      # Testes automatizados
+├── app.py
+├── requirements.txt
+├── instance/
+│   └── taskflow.db
+├── templates/
+│   └── index.html
+├── tests/
+│   └── test_app.py
+└── .github/
+    └── workflows/test.yml
+Controle de Qualidade
+GitHub Actions configurado para rodar testes automatizados via PyTest a cada commit;
+
+Logs disponíveis na aba Actions do GitHub.
+
+Histórico de Commits
+Exemplos de mensagens utilizadas:
+
+feat: adiciona campo prioridade e atualiza index.html para CRUD completo
+
+fix: corrige workflow do GitHub Actions
+
+docs: atualização README com descrição completa e mudança de escopo
+
+Beneficiados
+Equipe de Desenvolvimento: acompanhamento fácil do fluxo de tarefas;
+
+Gestores: monitoramento em tempo real de prioridades e status;
+
+Cliente/Usuário Final: visibilidade das entregas e progresso do projeto.
+
+Observações Finais
+O projeto é funcional, com todas as funcionalidades implementadas.
