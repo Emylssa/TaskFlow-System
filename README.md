@@ -57,26 +57,24 @@ taskflow/
 
 git clone https://github.com/Emylssa/TaskFlow-System.git
 cd TaskFlow-System
+
 Criar e ativar o ambiente virtual:
-
-
 python3 -m venv venv
 source venv/bin/activate  # macOS/Linux
 venv\Scripts\activate     # Windows
+
+
 Instalar dependências:
-
 pip install -r requirements.txt
+
 Rodar a aplicação:
-
-
 python3 app.py
+
 Abrir no navegador:
-
-
 http://127.0.0.1:5000
+
 Testes Automatizados
 Rode os testes locais com:
-
 
 pytest
 No GitHub, os testes são executados automaticamente via GitHub Actions a cada commit.
